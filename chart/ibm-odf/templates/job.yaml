@@ -31,10 +31,30 @@ spec:
                   fieldPath: spec.nodeName
             - name: JOB_NAME
               value: "ibm-odf-job"
+            - name: CLUSTER
+              value: {{ .Values.cluster_name }}
+            - name: REGION
+              value: {{ .Values.region }}
             - name: IBMCLOUD_API_KEY
               valueFrom: 
                 secretKeyRef: 
                   name: "apikey"
                   key: "IBMCLOUD_API_KEY"
+            - name: OSDSTORAGECLASSNAME
+              value: {{ .Values.osdStorageClassName }}
+            - name: OSDSIZE
+              value: {{ .Values.osdSize }}
+            - name: NUMOFOSD
+              value: {{ .Values.numOfOsd }}
+            - name: BILLINGTYPE
+              value: {{ .Values.billingType }}
+            - name: OCSUPGRADE
+              value: {{ .Values.ocsUpgrade }}
+            - name: CLUSTERENCRYPTION
+              value: {{ .Values.clusterEncryption }}
+            # - name: MONSIZE
+            #   value: {{ .Values.monSize }}
+            # - name: MONSTORAGECLASSNAME
+            #   value: {{ .Values.monStorageClassName }}
           command:
             - /scripts/install-odf.sh
